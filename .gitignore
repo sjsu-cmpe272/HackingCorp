@@ -1,0 +1,30 @@
+# Ignore  environmental variables, including API keys.
+.env
+
+# Ignore Postgres and MongoDb config variables
+.pgpass
+.mgpass
+show
+
+# Ignore Editor Conf file
+.idea/
+
+# npm packages
+node_modules
+
+# Mac
+.DS_Store
+
+# Emacs
+*~
+
+# Any Log file
+*.log
+
+# Any Public Key
+*.pub
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
