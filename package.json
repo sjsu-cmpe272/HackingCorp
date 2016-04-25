@@ -19,6 +19,7 @@
     "fb": "^1.0.2",
     "fbgraph": "^1.1.0",
     "foreman": "^1.4.1",
+    "jasmine-core": "^2.4.1",
     "lwip": "0.0.8",
     "nodemailer": "^2.0.0",
     "oauth": "^0.9.14",
@@ -29,14 +30,13 @@
     "passport-linkedin": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-remember-me": "0.0.1",
+    "pg": "^4.5.3",
     "piexifjs": "^1.0.0",
     "request": "^2.69.0",
     "sequelize": "^3.15.0",
     "serve-favicon": "^2.3.0",
     "serve-static": "^1.10.0",
     "underscore": "^1.8.3",
-    "xoauth2": "^1.1.0",
-    "jasmine-core": "^2.4.1",
-    "pg": "^4.5.3"
+    "xoauth2": "^1.1.0"
   }
 }
