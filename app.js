@@ -8,8 +8,8 @@ var express = require('express')                // Node Framework
     , port = process.env.PORT || 8081           // Define port the app will be using
     , http = require('http')		            // Require http server
     , path = require('path')                    // Handling of file paths
-    , gets = require('./routes/gets')      // Define routes path
-    , posts = require('./routes/posts')    // Define routes path
+    , gets = require('./routes/gets')           // Define routes path
+    , posts = require('./routes/posts')         // Define routes path
     , db = require('./models')                  // Set Path to the database model directory and definition
     , async = require('async')                  // Perform Asynchronous functions
     , passport = require('passport')            // Library to authenticate users
@@ -25,9 +25,6 @@ app.set('view engine', 'html');
 
 /* Midlewares
  ================*/
-
-app.use(cors({credentials: true, origin: true}));
-app.use(favicon(__dirname + '/public/images/favicon.ico'));             // use Favicon
 app.use(bodyParser.urlencoded({ extended: true, limit: '6mb' }));       // configure "app" to use bodyParser() to handle date from POST
 app.use(bodyParser.json());                             // define parse format - JSON
 app.use('/public',serveStatic(__dirname + '/public/')); // Serve Static Files

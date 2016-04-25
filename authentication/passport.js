@@ -3,8 +3,6 @@
  */
 var LocalStrategy = require('passport-local').Strategy
     , FacebookStrategy = require('passport-facebook').Strategy
-    , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-    , LinkedInStrategy = require('passport-linkedin').Strategy
     , hash = require('../authentication/passencrypt').hash
     , help = require('../helper/help.js')
     , constants = require('../helper/constants');   // Including Helper Functions
@@ -75,69 +73,6 @@ module.exports = function (passport, db) {
         },
         function (accessToken, refreshToken, profile, done) {
 
-            var User = global.db.User;
-            var filteredProfile = help.getFilteredProfile(profile);
-
-            User.find({where: {providerID: filteredProfile.id, provider: filteredProfile.provider}}).then(function (user) {
-                if (user) {
-                    // User Found in Database; nothing to do...
-                    return done(null, profile);
-                } else {
-                    // User not in Database, we need to create new record
-                    global.db.User.addSocialUser(filteredProfile, function (savedUser) {
-                        help.sendWelcomeMessage(filteredProfile.email, function(error,result){
-                            if(error){
-                                console.log("Error Sending Welcome message: ",error);
-                            }
-                            return done(null, profile);
-                        });
-                    });
-                }
-            }).error(function (err) {
-                help.displayResults(err);  // Log Error to Console
-                return done(err);
-            });
-        }
-    ));
-
-    passport.use(new GoogleStrategy({
-            clientID: process.env.GOOGLE_CONSUMER_KEY,
-            clientSecret: process.env.GOOGLE_CONSUMER_SECRET,
-            callbackURL: process.env.BASE_URL+"/auth/google/callback"
-        },
-        function (token, tokenSecret, profile, done) {
-            var User = global.db.User;
-            var filteredProfile = help.getFilteredProfile(profile);
-
-            User.find({where: {providerID: filteredProfile.id, provider: filteredProfile.provider}}).then(function (user) {
-                if (user) {
-                    // User Found in Database; nothing to do...
-                    return done(null, profile);
-                } else {
-                    // User not in Database, we need to create new record
-                    global.db.User.addSocialUser(filteredProfile, function (savedUser) {
-                        help.sendWelcomeMessage(filteredProfile.email, function(error,result){
-                            if(error){
-                                console.log("Error Sending Welcome message: ",error);
-                            }
-                            return done(null, profile);
-                        });
-                    });
-                }
-            }).error(function (err) {
-                help.displayResults(err);  // Log Error to Console
-                return done(err);
-            });
-        }
-    ));
-
-    passport.use(new LinkedInStrategy({
-            consumerKey: process.env.LINKEDIN_API_KEY,
-            consumerSecret: process.env.LINKEDIN_SECRET_KEY,
-            callbackURL: process.env.BASE_URL+"/auth/linkedin/callback",
-            profileFields: ['id', 'first-name', 'last-name', 'email-address', 'picture-url', 'formatted-name']
-        },
-        function (token, tokenSecret, profile, done) {
             var User = global.db.User;
             var filteredProfile = help.getFilteredProfile(profile);
 
