@@ -23,7 +23,7 @@ var express = require('express')                // Node Framework
 app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');
 
-/* Midlewares
+/* Midlewares  hi
  ================*/
 app.use(bodyParser.urlencoded({ extended: true, limit: '6mb' }));       // configure "app" to use bodyParser() to handle date from POST
 app.use(bodyParser.json());                             // define parse format - JSON

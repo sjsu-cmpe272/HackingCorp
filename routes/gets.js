@@ -11,7 +11,7 @@ var _ = require('underscore')               // Javascript Helper Library
 /* Routes to follow
  ======================*/
 var index_fn = function(req, res, next) {
-    // Render index.html
+    // Render indexOriginal.html
     var user, provider, social;
 
     // Verify if user is logged using Try/Catch - If not set as "Guest"
@@ -29,7 +29,7 @@ var index_fn = function(req, res, next) {
     }
 
     social = help.getSocialURLs();
-    // Render "index.html" and send the variable object "name" along
+    // Render "indexOriginal.html" and send the variable object "name" along
     res.render("index", {user: user, passwordReset: false, layout: false, provider:provider, social:social});
 };
 
@@ -41,7 +41,15 @@ var login_fn = function(req, res, next) {
 // Log-Out an user
 var logout_fn = function(req, res, next) {
     req.logout();
-    res.send('logged_out');
+    res.redirect('/');
+};
+
+var about_fn = function(req, res, next) {
+    res.render("about");
+};
+
+var corporatedata_fn = function(req, res, next) {
+    res.render("corporatedata");
 };
 
 var account_fn = function(req, res, next) {
@@ -125,32 +133,6 @@ var facebook_authorization_callback_fn = function (req, res, next) {
     }
 };
 
-// Reset the Token for Password Reset
-var reset_token_fn = function(req, res, next) {
-    var social = help.getSocialURLs();
-
-    global.db.User.getUserWithResetTokenAndExpiration(req.params.token, function (user) {
-        if (user.error) {
-            res.render('reset',{error:true, social: social, message:"Password reset token is invalid or has expired."});
-        } else {
-            res.render('reset',{error:false, social: social, message:""});
-        }
-    });
-};
-
-
-var about_fn = function(req, res, next) {
-    res.render('about.ejs');
-};
-
-var contact_fn = function(req, res, next) {
-    res.render('contact');
-};
-
-var help_fn = function(req, res, next) {
-    res.render('help');
-};
-
 /* Map Routes
  ======================*/
 var define_routes = function(dict) {
@@ -167,18 +149,15 @@ var routes = define_routes({
     '/': index_fn,
     '/login': login_fn,
     '/logout': logout_fn,
+    '/about': about_fn,
+    '/corporatedata': corporatedata_fn,
     '/account': account_fn,
     '/auth/facebook': auth_facebook_fn,
     '/auth/facebook/callback': auth_facebook_callback_fn,
     '/facebook/authorization': facebook_authorization_fn,
     '/facebook/authorization/callback': facebook_authorization_callback_fn,
     '/facebook/authorization/callback/:token': facebook_authorization_callback_fn,
-    '/userhasloggedin':user_has_logged_in_fn,
-    '/reset/:token': reset_token_fn,
-    '/about': about_fn,
-    '/contact': contact_fn,
-    '/help': help_fn
-
+    '/userhasloggedin':user_has_logged_in_fn
 });
 
 module.exports = routes;

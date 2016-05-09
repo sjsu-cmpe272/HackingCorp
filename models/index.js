@@ -9,13 +9,14 @@ if (!global.hasOwnProperty('db')) {
     if (process.env.DATABASE_URL) { /* Remote database... Normally Heroku PostgreSQL running on AWS */
         console.log("We are on Heroku Database...");
 
-        var pgregex = /postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/;
+        var pgregex = /mysql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/;
         var match = process.env.DATABASE_URL.match(pgregex);
         user = match[1];
         password = match[2];
         host = match[3];
         port = match[4];
         dbname = match[5];
+
     }
     else if(process.env.RDS_HOSTNAME) { // Remote Database in AWS RDS - PostgreSQL
         console.log("We are on AWS RDS Database...");
@@ -36,14 +37,17 @@ if (!global.hasOwnProperty('db')) {
     }
 
     var config =  {
-        dialect:  'postgres',
+        dialect:  'mysql',
         dialectOptions: {
             ssl: true
         },
-        protocol: 'postgres',
+        protocol: 'mysql',
         port: port,
         host: host,
-        logging: console.log
+        logging: console.log,
+        define: {
+            timestamps: false
+        }
     };
 
     sq = new Sequelize(dbname, user, password, config);
@@ -59,10 +63,16 @@ if (!global.hasOwnProperty('db')) {
     global.db = {
         Sequelize: Sequelize,
         sequelize: sq,
-        User: sq.import(__dirname + '/user'),
-        Goodthing: sq.import(__dirname + '/goodThing'),
-        UserSetting: sq.import(__dirname + '/userSetting')
+        Customers: sq.import(__dirname + '/customers'),
+        Employees: sq.import(__dirname + '/employees'),
+        Offices: sq.import(__dirname + '/offices'),
+        Orderdetails: sq.import(__dirname + '/orderdetails'),
+        Orders: sq.import(__dirname + '/orders'),
+        Payments: sq.import(__dirname + '/payments'),
+        Productlines: sq.import(__dirname + '/productlines'),
+        Products: sq.import(__dirname + '/products')
     };
+
 }
 module.exports = global.db;
 
