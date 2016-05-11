@@ -52,6 +52,8 @@ for(var post in posts) {
     app.post(posts[post].path, posts[post].fn);
 }
 
+//db.User.drop(); console.log("User Tables DROPPED!!!!");
+
 /* Start Server
  ================*/
 // Begin listening for HTTP requests to Express app

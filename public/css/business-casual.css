@@ -190,3 +190,11 @@ footer p {
         clear: both;
     }
 }
+
+/* CUSTOM CSS */
+.table-center{ text-align: center;}
+
+.centerDiv {
+    width: 60%;
+    margin: 0 auto;
+}

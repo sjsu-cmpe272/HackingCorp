@@ -16,8 +16,14 @@
 
     <!-- Custom CSS -->
     <link href="/public/css/business-casual.css" rel="stylesheet">
+    <!-- Social Login Buttons -->
+    <link href="../public/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../public/css/bootstrap-social.css" rel="stylesheet">
 
-    <!-- Fonts -->
+    <!-- VALIDATION ENGINE CSS -->
+    <link href="../public/css/validationEngine.jquery.css" rel="stylesheet">
+
+    <!-- Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
@@ -61,9 +67,22 @@
                 <li>
                     <a href="/about">About</a>
                 </li>
-                <li>
-                    <a href="/login">Login</a>
-                </li>
+                <%
+                var loggedUser;
+
+                // Verify if user is logged using Try/Catch - If not set as "Guest"
+                try {
+                    loggedUser = user;
+                }
+                catch (error) {
+                    loggedUser = "Guest";
+                }
+                if (loggedUser == "Guest") { %>
+                <li><a href="/login"><i class="fa fa-user"> Login</i></a></li>
+                <% } else { %>
+                <li><a href=""><i class="fa fa-user"> Welcome <%= loggedUser %> </i></a></li>
+                <li><a href="/logout">Logout</a></li>
+                <% } %>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

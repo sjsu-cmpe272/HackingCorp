@@ -63,6 +63,7 @@ if (!global.hasOwnProperty('db')) {
     global.db = {
         Sequelize: Sequelize,
         sequelize: sq,
+        User: sq.import(__dirname + '/user'),
         Customers: sq.import(__dirname + '/customers'),
         Employees: sq.import(__dirname + '/employees'),
         Offices: sq.import(__dirname + '/offices'),

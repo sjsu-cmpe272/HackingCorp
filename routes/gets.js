@@ -11,26 +11,18 @@ var _ = require('underscore')               // Javascript Helper Library
 /* Routes to follow
  ======================*/
 var index_fn = function(req, res, next) {
-    // Render indexOriginal.html
-    var user, provider, social;
+    var loggedUser;
 
     // Verify if user is logged using Try/Catch - If not set as "Guest"
     try {
-        if(req.user.displayName){
-            user = req.user.displayName;
-        } else {
-            user = req.user.firstName;
-        }
-        provider = req.user.provider;
+        loggedUser = req.user.firstName;
     }
     catch (error) {
-        user = "Guest";
-        provider = "Guest";
+        loggedUser = "Guest";
     }
 
-    social = help.getSocialURLs();
-    // Render "indexOriginal.html" and send the variable object "name" along
-    res.render("index", {user: user, passwordReset: false, layout: false, provider:provider, social:social});
+    // Render "index.html" and send the variable object "name" along
+    res.render("index", {user:loggedUser,layout:false});
 };
 
 var login_fn = function(req, res, next) {
@@ -142,6 +134,7 @@ var define_routes = function(dict) {
 
     return _.map(_.pairs(dict), toroute);
 };
+
 
 /* Define Routes
  ======================*/

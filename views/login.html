@@ -1,16 +1,93 @@
 <% include ./header %>
 
-<div class="container">
-
-    <div class="row">
+<div class="container-fluid">
+    <div class="row centerDiv">
         <div class="box">
-            <div class="col-lg-12 text-center">
-                <h1 class="brand-name">Login</h1>
-                <hr class="tagline-divider">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="login-form"><!--login form-->
+                            <h2 class="text-center"><strong>New User Signup</strong></h2>
+                            <div id="signUpDiv" class="signup-form">
+                                <form id="signupForm" role="form" method="post" action="/signup">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control validate[required]" id="name" name="name"
+                                               placeholder="Name"/>
+                                    </div>
+                                    <div class="form-group error-flag">
+                                        <input type="text" class="form-control validate[required, custom[email]]" id="email"
+                                               name="email" placeholder="Email"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control validate[required]" id="password"
+                                               name="password" placeholder="Password"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control validate[required,equals[password]]"
+                                               name="passwordConfirmation" placeholder="Confirm Password"/>
+                                    </div>
+                                    <div class="col-sm-12 text-center"><button id="signupForm_submit" type="submit" class="btn btn-success btn-lg col-sm-12">Signup</button></div>
+                                </form>
+                            </div>
+                        </div>
+                        <!--/login form-->
+                    </div>
+
+                    <!-- Login Division and Spinner section -->
+                    <div id="loginDivider">
+                        <div class="col-md-2 col-lg-2 col-sm-2 hidden-xs text-center">
+                            <h2><img src="../public/img/vlineLarge.png"></h2>
+                        </div>
+                        <div class="hidden-sm hidden-md hidden-lg text-center">
+                            <h2><img src="../public/img/vlineLarge.jpg"></h2>
+                        </div>
+                    </div>
+
+                    <div id="loginSpinner" style="display:none;">
+                        <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 text-center xlargepaddingtop hidden-xs">
+                            <i class='fa fa-spinner fa-pulse fa-5x'></i>
+                        </div>
+                        <div class="col-xs-12 text-center centering medpaddingtop visible-xs">
+                            <i class='fa fa-spinner fa-pulse fa-5x'></i>
+                        </div>
+                    </div>
+                    <!--/Login Division and Spinner section END -->
+
+                    <div class="col-sm-5">
+                        <div id="messageLoginDiv" class="alert alert-warning text-center" role="alert"
+                             style="display:none;"><h3 class="nomarginall"><strong><span
+                                id="messageLogin"></span></strong></h3></div>
+                        <div id="logInDiv" class=signin-form">
+                            <h2 class="text-center"><strong>Sign In Manually</strong></h2>
+
+                            <form id="loginForm" role="form" method="post" action="/login">
+                                <div class="form-group">
+                                    <input type="email" class="form-control validate[required, custom[email]]"
+                                           name="email" placeholder="Email"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control validate[required]" name="password"
+                                           placeholder="Password"/>
+                                </div>
+                                <div class="row">
+                                    <!--<div class="col-sm-6 vcenter"> <input type="checkbox" id="rememberMe" name="rememberMe" class="">&nbsp;&nbsp;Remember Me</div>-->
+                                    <div class="col-sm-12 text-center">
+                                        <button id="loginForm_submit" type="submit"
+                                                class="btn btn-success btn-lg col-sm-12">Login
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!--/sign up form-->
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
+<!-- /.login & signup container -->
 
 <% include ./footer %>

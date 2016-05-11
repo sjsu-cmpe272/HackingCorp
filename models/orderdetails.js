@@ -32,7 +32,20 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.INTEGER(6),
 			allowNull: false
 		}
-	}, {
-		tableName: 'orderdetails'
-	});
+	},
+        {
+            classMethods: {
+                getOrdersDetailsData: function (callback) {
+                    var _OrdersDetails = this;
+
+                    _OrdersDetails.findAll().then(function (ordersDetails) {
+                        //return order
+                        callback(ordersDetails);
+                    }).error(function (error) {
+                        console.log("Error!");
+                        callback(null);
+                    });
+                }
+            }
+        });
 };
