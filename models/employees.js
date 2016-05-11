@@ -53,8 +53,7 @@ module.exports = function(sequelize, DataTypes) {
                         //return order
                         callback(employees);
                     }).error(function (error) {
-                        //Do something with error
-                        console.log("Error!, we must do something: 'Employees.js, line 22");
+                        console.log("Error!");
                         callback(null);
                     });
                 }

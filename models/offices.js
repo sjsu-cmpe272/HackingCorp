@@ -39,7 +39,20 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: false
 		}
-	}, {
-		tableName: 'offices'
-	});
+	},
+        {
+        classMethods: {
+            getOfficesData: function (callback) {
+                var _Offices = this;
+
+                _Offices.findAll().then(function (offices) {
+                    //return order
+                    callback(offices);
+                }).error(function (error) {
+                    console.log("Error!");
+                    callback(null);
+                });
+            }
+        }
+    });
 };

@@ -60,6 +60,18 @@ module.exports = function(sequelize, DataTypes) {
 			allowNull: true
 		}
 	}, {
-		tableName: 'customers'
-	});
+        classMethods: {
+            getCustomersData: function (callback) {
+                var _Customers = this;
+
+                _Customers.findAll().then(function (customers) {
+                    //return order
+                    callback(customers);
+                }).error(function (error) {
+                    console.log("Error!");
+                    callback(null);
+                });
+            }
+        }
+    });
 };
