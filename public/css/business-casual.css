@@ -193,3 +193,8 @@ footer p {
 
 /* CUSTOM CSS */
 .table-center{ text-align: center;}
+
+.centerDiv {
+    width: 60%;
+    margin: 0 auto;
+}

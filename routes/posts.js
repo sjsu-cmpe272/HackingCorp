@@ -35,6 +35,33 @@ var login_fn = function(req, res, next) {
     })(req, res, next);
 };
 
+// Signup new user (create new user)
+var signup_fn = function (req, res, next) {
+
+    global.db.User.createUser(req, function (savedUser) {
+        if (savedUser.error) {
+            res.send({element: "signup", id: 0, error: true, message: "Error creating new user.", redirect: false});
+        } else {
+            // Send user a welcome message
+            help.sendWelcomeMessage(req.user.email, function(error, result){
+                if(error){
+                    console.log("Error Sending Email to new user: ", error);
+                }
+                res.status(200).json({element: "signup", id:savedUser.id, error: false, message:"New Account Created", redirect: true});
+            });
+        }
+    });
+};
+
+// Check if user exists in DB
+var checkuser_fn = function(req, res, next) {
+    // Query the database to verify if user exists
+    global.db.User.userExist(req, function(exist){
+        if(exist) res.send({available:false});
+        else res.send({available:true});
+    });
+};
+
 var data_fn = function(req, res, next) {
     console.log("Req: ", req.body.table);
 
@@ -129,6 +156,8 @@ var define_routes = function(dict) {
  ======================*/
 var routes = define_routes({
     '/login': login_fn,
+    '/signup': signup_fn,
+    '/checkuser': checkuser_fn,
     '/data': data_fn
 });
 
