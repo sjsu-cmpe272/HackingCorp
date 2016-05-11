@@ -19,7 +19,20 @@ module.exports = function(sequelize, DataTypes) {
 			type: 'MEDIUMBLOB',
 			allowNull: true
 		}
-	}, {
-		tableName: 'productlines'
-	});
+	},
+        {
+            classMethods: {
+                getProductLinesData: function (callback) {
+                    var _ProductLines = this;
+
+                    _ProductLines.findAll().then(function (productLines) {
+                        //return order
+                        callback(productLines);
+                    }).error(function (error) {
+                        console.log("Error!");
+                        callback(null);
+                    });
+                }
+            }
+        });
 };

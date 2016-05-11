@@ -24,7 +24,20 @@ module.exports = function(sequelize, DataTypes) {
 			type: 'DOUBLE',
 			allowNull: false
 		}
-	}, {
-		tableName: 'payments'
-	});
+	},
+        {
+            classMethods: {
+                getPaymentsData: function (callback) {
+                    var _Payments = this;
+
+                    _Payments.findAll().then(function (payments) {
+                        //return order
+                        callback(payments);
+                    }).error(function (error) {
+                        console.log("Error!");
+                        callback(null);
+                    });
+                }
+            }
+        });
 };

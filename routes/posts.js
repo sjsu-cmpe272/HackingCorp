@@ -76,9 +76,36 @@ var data_fn = function(req, res, next) {
             });
             break;
         case "Orders Details":
-            global.db.Orderdetails.getOrdersDetailsData(function (ordersDetailsData) {
-                if (ordersDetailsData) {
-                    res.render('ordersDetailsData',{ordersDetails:ordersDetailsData});
+        global.db.Orderdetails.getOrdersDetailsData(function (ordersDetailsData) {
+            if (ordersDetailsData) {
+                res.render('ordersDetailsData',{ordersDetails:ordersDetailsData});
+            } else {
+                res.send("<p>Error Retrieving Data. Please, Try Again!</p>");
+            }
+        });
+        break;
+        case "Payments":
+            global.db.Payments.getPaymentsData(function (paymentsData) {
+                if (paymentsData) {
+                    res.render('paymentsData',{payments:paymentsData});
+                } else {
+                    res.send("<p>Error Retrieving Data. Please, Try Again!</p>");
+                }
+            });
+            break;
+        case "Products":
+            global.db.Products.getProductsData(function (productsData) {
+                if (productsData) {
+                    res.render('productsData',{products:productsData});
+                } else {
+                    res.send("<p>Error Retrieving Data. Please, Try Again!</p>");
+                }
+            });
+            break;
+        case "Product Lines":
+            global.db.Productlines.getProductLinesData(function (productLinesData) {
+                if (productLinesData) {
+                    res.render('productLinesData',{productLines:productLinesData});
                 } else {
                     res.send("<p>Error Retrieving Data. Please, Try Again!</p>");
                 }

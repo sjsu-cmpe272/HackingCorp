@@ -43,7 +43,20 @@ module.exports = function(sequelize, DataTypes) {
 			type: 'DOUBLE',
 			allowNull: false
 		}
-	}, {
-		tableName: 'products'
-	});
+	},
+        {
+            classMethods: {
+                getProductsData: function (callback) {
+                    var _Products = this;
+
+                    _Products.findAll().then(function (products) {
+                        //return order
+                        callback(products);
+                    }).error(function (error) {
+                        console.log("Error!");
+                        callback(null);
+                    });
+                }
+            }
+        });
 };
