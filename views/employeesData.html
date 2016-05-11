@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <!-- Row for showing results -->
+    <div class="row">
+
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr class="text-center">
+                <th class="table-center">Row</th>
+                <th class="table-center">First Name</th>
+                <th class="table-center">Last Name</th>
+                <th class="table-center">Emp. No.</th>
+                <th class="table-center">Job Title</th>
+                <th class="table-center">Extension</th>
+                <th class="table-center">Email</th>
+                <th class="table-center">Office Code</th>
+                <th class="table-center">Reports To</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% for(var a=0; a < employees.length; a++) { %>
+            <tr>
+                <th scope="row"><%=a+1 %></th>
+                <td><%=employees[a].firstName %></td>
+                <td><%=employees[a].lastName %></td>
+                <td><%=employees[a].employeeNumber %></td>
+                <td><%=employees[a].jobTitle %></td>
+                <td><%=employees[a].extension %></td>
+                <td><%=employees[a].email %></td>
+                <td><%=employees[a].officeCode %></td>
+                <td><%=employees[a].reportsTo %></td>
+            </tr>
+            <% } %>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+

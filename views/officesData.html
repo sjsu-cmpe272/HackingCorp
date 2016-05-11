@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <!-- Row for showing results -->
+    <div class="row">
+
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th class="table-center">Row</th>
+                <th class="table-center">Address L1</th>
+                <th class="table-center">Address L2</th>
+                <th class="table-center">City</th>
+                <th class="table-center">State</th>
+                <th class="table-center">Country</th>
+                <th class="table-center">Zip code</th>
+                <th class="table-center">Territory</th>
+                <th class="table-center">Phone</th>
+                <th class="table-center">Office Code</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% for(var a=0; a < offices.length; a++) { %>
+            <tr>
+                <th scope="row"><%=a+1 %></th>
+                <td><%=offices[a].addressLine1 %></td>
+                <td><%=offices[a].addressLine2 %></td>
+                <td><%=offices[a].city %></td>
+                <td><%=offices[a].state %></td>
+                <td><%=offices[a].country %></td>
+                <td><%=offices[a].postalCode %></td>
+                <td><%=offices[a].territory %></td>
+                <td><%=offices[a].phone %></td>
+                <td><%=offices[a].officeCode %></td>
+            </tr>
+            <% } %>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

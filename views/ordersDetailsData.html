@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <!-- Row for showing results -->
+    <div class="row">
+
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th class="table-center">Row</th>
+                <th class="table-center">Order Number</th>
+                <th class="table-center">Product Code</th>
+                <th class="table-center">Qty. Ordered</th>
+                <th class="table-center">Price</th>
+                <th class="table-center">Order Line No.</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% for(var a=0; a < ordersDetails.length; a++) { %>
+            <tr>
+                <th scope="row"><%=a+1 %></th>
+                <td><%=ordersDetails[a].orderNumber %></td>
+                <td><%=ordersDetails[a].productCode %></td>
+                <td><%=ordersDetails[a].quantityOrdered %></td>
+                <td><%=ordersDetails[a].priceEach %></td>
+                <td><%=ordersDetails[a].orderLineNumber %></td>
+            </tr>
+            <% } %>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
