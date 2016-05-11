@@ -35,7 +35,20 @@ module.exports = function(sequelize, DataTypes) {
 				key: 'customerNumber'
 			}
 		}
-	}, {
-		tableName: 'orders'
-	});
+	},
+        {
+            classMethods: {
+                getOrdersData: function (callback) {
+                    var _Orders = this;
+
+                    _Orders.findAll().then(function (orders) {
+                        //return order
+                        callback(orders);
+                    }).error(function (error) {
+                        console.log("Error!");
+                        callback(null);
+                    });
+                }
+            }
+        });
 };

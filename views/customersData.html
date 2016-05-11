@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <!-- Row for showing results -->
+    <div class="row">
+
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th class="table-center">Row</th>
+                <th class="table-center">Customer</th>
+                <th class="table-center">Contact</th>
+                <th class="table-center">Address L1</th>
+                <th class="table-center">Address L2</th>
+                <th class="table-center">City</th>
+                <th class="table-center">State</th>
+                <th class="table-center">Country</th>
+                <th class="table-center">Zip code</th>
+                <th class="table-center">Customer No.</th>
+                <th class="table-center">Phone</th>
+                <th class="table-center">Sales Rep.</th>
+                <th class="table-center">Credit</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% for(var a=0; a < customers.length; a++) { %>
+            <tr>
+                <th scope="row"><%=a+1 %></th>
+                <td><%=customers[a].customerName %></td>
+                <td><%=customers[a].contactFirstName+ ' ' +customers[a].contactLastName %></td>
+                <td><%=customers[a].addressLine1 %></td>
+                <td><%=customers[a].addressLine2 %></td>
+                <td><%=customers[a].city %></td>
+                <td><%=customers[a].state %></td>
+                <td><%=customers[a].country %></td>
+                <td><%=customers[a].postalCode %></td>
+                <td><%=customers[a].customerNumber %></td>
+                <td><%=customers[a].phone %></td>
+                <td><%=customers[a].salesRepEmployeeNumber %></td>
+                <td><%=customers[a].creditLimit %></td>
+            </tr>
+            <% } %>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

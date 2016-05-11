@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <!-- Row for showing results -->
+    <div class="row">
+
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th class="table-center">Row</th>
+                <th class="table-center">Customer No.</th>
+                <th class="table-center">Check No.</th>
+                <th class="table-center">Payment Date</th>
+                <th class="table-center">Amount</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% for(var a=0; a < payments.length; a++) { %>
+            <tr>
+                <th scope="row"><%=a+1 %></th>
+                <td><%=payments[a].customerNumber %></td>
+                <td><%=payments[a].checkNumber %></td>
+                <td><%=payments[a].paymentDate %></td>
+                <td><%=payments[a].amount %></td>
+            </tr>
+            <% } %>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

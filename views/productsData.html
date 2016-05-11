@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <!-- Row for showing results -->
+    <div class="row">
+
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th class="table-center">Row</th>
+                <th class="table-center">Code</th>
+                <th class="table-center">Name</th>
+                <th class="table-center">Description</th>
+                <th class="table-center">Line</th>
+                <th class="table-center">Scale</th>
+                <th class="table-center">Vendor</th>
+                <th class="table-center">Qty in Stock</th>
+                <th class="table-center">Price</th>
+                <th class="table-center">MSRP</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% for(var a=0; a < products.length; a++) { %>
+            <tr>
+                <th scope="row"><%=a+1 %></th>
+                <td><%=products[a].productCode %></td>
+                <td><%=products[a].productName %></td>
+                <td><%=products[a].productDescription %></td>
+                <td><%=products[a].productLine %></td>
+                <td><%=products[a].productScale %></td>
+                <td><%=products[a].productVendor %></td>
+                <td><%=products[a].quantityInStock %></td>
+                <td><%=products[a].buyPrice %></td>
+                <td><%=products[a].MSRP %></td>
+            </tr>
+            <% } %>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

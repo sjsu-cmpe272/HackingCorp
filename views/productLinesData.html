@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <!-- Row for showing results -->
+    <div class="row">
+
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+            <tr>
+                <th class="table-center">Row</th>
+                <th class="table-center">Product Line</th>
+                <th class="table-center">Description</th>
+                <th class="table-center">HTML Desc.</th>
+                <th class="table-center">Image</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% for(var a=0; a < productLines.length; a++) { %>
+            <tr>
+                <th scope="row"><%=a+1 %></th>
+                <td><%=productLines[a].productLine %></td>
+                <td><%=productLines[a].textDescription %></td>
+                <td><%=productLines[a].htmlDescription %></td>
+                <td><%=productLines[a].image %></td>
+            </tr>
+            <% } %>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

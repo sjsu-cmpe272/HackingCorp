@@ -17,8 +17,7 @@ $(document).ready(function(){
         e.preventDefault();
 
         console.log("Javascript to send dbtables");
-
-        $.post('/data', function (data){
+        $.post($("#corporateData").attr("action"),$("#corporateData").serialize(), function (data){
             if(data){
                 $("#showData").html(data);
             } else {
