@@ -53,4 +53,42 @@ module.exports = function (passport, db) {
             });
         }
     ));
+<<<<<<< HEAD
+=======
+
+    passport.use(new FacebookStrategy({
+            clientID: process.env.FACEBOOK_APP_ID,
+            clientSecret: process.env.FACEBOOK_APP_SECRET,
+            //clientID: "922259717867972",
+           // clientSecret: "5e2f4fa07fnfb5118528eb8e3fe4efe8ba",
+            callbackURL: process.env.BASE_URL+"/auth/facebook/callback",
+            profileFields: ['email', 'name', 'displayName', 'photos']
+        },
+        function (accessToken, refreshToken, profile, done) {
+
+            var User = global.db.User;
+            var filteredProfile = help.getFilteredProfile(profile);
+
+            User.find({where: {providerID: filteredProfile.id, provider: filteredProfile.provider}}).then(function (user) {
+                if (user) {
+                    // User Found in Database; nothing to do...
+                    return done(null, profile);
+                } else {
+                    // User not in Database, we need to create new record
+                    global.db.User.addSocialUser(filteredProfile, function (savedUser) {
+                        help.sendWelcomeMessage(filteredProfile.email, function(error,result){
+                            if(error){
+                                console.log("Error Sending Welcome message: ",error);
+                            }
+                            return done(null, profile);
+                        });
+                    });
+                }
+            }).error(function (err) {
+                help.displayResults(err);  // Log Error to Console
+                return done(err);
+            });
+        }
+    ));
+>>>>>>> aad1e5bfe27fc98e676a22271eac43402ae8edcf
 };
