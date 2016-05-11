@@ -6,16 +6,23 @@ if (!global.hasOwnProperty('db')) {
     // DB Connection Variables
     var user, password, host, port, dbname;
 
-    if (process.env.DATABASE_URL) { /* Remote database... Normally Heroku PostgreSQL running on AWS */
+    if (process.env.DATABASE_URL) { /!* Remote database... Normally Heroku PostgreSQL running on AWS *!/
         console.log("We are on Heroku Database...");
+        console.log(process.env.DATABASE_URL);
 
         var pgregex = /mysql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/;
         var match = process.env.DATABASE_URL.match(pgregex);
+        //console.log(match);
         user = match[1];
+        console.log("user: ",user);
         password = match[2];
+        console.log("password: ",password);
         host = match[3];
+        console.log("host: ",host);
         port = match[4];
+        console.log("port: ",port);
         dbname = match[5];
+        console.log("dbname: ",dbname);
 
     }
     else if(process.env.RDS_HOSTNAME) { // Remote Database in AWS RDS - PostgreSQL
@@ -42,8 +49,8 @@ if (!global.hasOwnProperty('db')) {
             ssl: true
         },
         protocol: 'mysql',
-        port: port,
-        host: host,
+        port:port,
+        host:host,
         logging: console.log,
         define: {
             timestamps: false
