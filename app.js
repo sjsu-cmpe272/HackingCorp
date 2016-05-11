@@ -15,6 +15,7 @@ var express = require('express')                // Node Framework
     , passport = require('passport')            // Library to authenticate users
     , serveStatic = require('serve-static')     // Serve Static Files
     , busboy = require('connect-busboy')        // For Multi-part file upload
+    , exports = module.exports={}
     , favicon = require('serve-favicon');       // Display Favicon on site
 
 /* VIEW ENGINE - EJS
@@ -52,6 +53,7 @@ for(var post in posts) {
     app.post(posts[post].path, posts[post].fn);
 }
 
+var server;
 /* Start Server
  ================*/
 // Begin listening for HTTP requests to Express app
@@ -60,9 +62,19 @@ global.db.sequelize.sync().then(function(err) {
     async.parallel([
         function () {
             // Begin listening for HTTP requests to Express app
-            http.createServer(app).listen(port, function () {
+
+
+            server =http.createServer(app).listen(port, function () {
+                //server = app.listen(port,function(){
                 console.log("Listening on " + port);
             });
         }
     ]);
 });
+
+//close the server after Jasmine test
+exports.closeServer =function(){
+    server.close();
+};
+
+
