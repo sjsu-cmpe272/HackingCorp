@@ -53,4 +53,8 @@ module.exports = function (passport, db) {
             });
         }
     ));
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 1f96ba9761cf60c56d2789b5fcc0e7bdab20090c
