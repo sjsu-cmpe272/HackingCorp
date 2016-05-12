@@ -38,8 +38,11 @@ exports.displayResults = function(results) {
 //   the request will proceed.  Otherwise, the user will be redirected to the
 //   login page.
 exports.ensureAuthenticated = function(req, res, next) {
-    if (req.isAuthenticated()) { return next(); }
-    res.status(407).json({ error: 'Login Required' })
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        console.log("Not Logged");
+    }
 };
 
 /**

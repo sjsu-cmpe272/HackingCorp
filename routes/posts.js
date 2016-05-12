@@ -3,15 +3,8 @@
  */
 var _ = require('underscore')   // Javascript Helper Library
     , path = require('path')    // Handling of file paths
-    , AWS = require('aws-sdk')                  // Library to handle storage in S3 Servers
-    , fs = require('fs')                        // Handle Read and Write of files
-    , help = require('../helper/help.js')    // Including Helper Functions
-    , passport = require('passport')            // Library to authenticate users
-    , crypto = require('crypto')
-    , async = require('async')                  // Perform Asynchronous functions
-    , fb = require('facebook-js')
-    , constants = require('../helper/constants')
-    , request = require('request');
+    , help = require('../helper/help.js')       // Including Helper Functions
+    , passport = require('passport');           // Library to authenticate users
 
 /* POST routes
  ======================*/
